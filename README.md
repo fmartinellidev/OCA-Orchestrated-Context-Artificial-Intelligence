@@ -1,5 +1,7 @@
 ![Diagrama](docs/images/ocai_dsl_icon.png)
 
+English version after portuguese ↓
+
 > **OCAI (Orchestrated Context Artificial Intelligence)** é uma linguagem específica de domínio (DSL) criada para organizar, validar e orquestrar fluxos de contexto destinados a Large Language Models (LLMs).
 
 O objetivo do OCAI não é substituir Prompt Engineering, mas fornecer uma camada de execução estruturada capaz de tornar projetos complexos mais organizados, reutilizáveis e previsíveis.
