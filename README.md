@@ -1,5 +1,357 @@
 ![Diagrama](docs/images/ocai_dsl_icon.png)
 
+> **OCAI (Orchestrated Context Artificial Intelligence)** é uma linguagem específica de domínio (DSL) criada para organizar, validar e orquestrar fluxos de contexto destinados a Large Language Models (LLMs).
+
+O objetivo do OCAI não é substituir Prompt Engineering, mas fornecer uma camada de execução estruturada capaz de tornar projetos complexos mais organizados, reutilizáveis e previsíveis.
+
+---
+
+# Por que o OCAI?
+
+À medida que projetos de IA crescem, os prompts acabam se tornando enormes blocos de texto contendo:
+
+- regras
+- exceções
+- validações
+- fluxos condicionais
+- reutilização de instruções
+
+Embora LLMs sejam excelentes interpretando linguagem natural, projetos grandes acabam sofrendo com:
+
+- duplicação de instruções;
+- dificuldade de manutenção;
+- pouca reutilização;
+- ordem de execução implícita;
+- comportamento imprevisível.
+
+O OCAI resolve esse problema adicionando uma pequena linguagem declarativa para organizar todo esse contexto.
+
+---
+
+# Filosofia
+
+O OCAI parte de um conceito simples:
+
+> **Contexto continua sendo o que a IA executa. A DSL apenas organiza esse contexto.**
+
+Em vez de escrever um único prompt gigantesco, o projeto passa a ser composto por pequenos blocos reutilizáveis.
+
+```
+Contexto
+        +
+DSL
+        +
+Runtime
+        =
+Prompt Final
+```
+
+---
+
+# Como funciona
+
+O Runtime interpreta a DSL e prepara o contexto antes que ele seja enviado ao modelo.
+
+```
+Usuário
+      │
+      ▼
+ FRONTEND
+      │
+      ▼
+ Runtime
+      │
+      ├── Assets
+      ├── Macros
+      ├── Pipelines
+      ├── Validações
+      ▼
+ Workflow
+      ▼
+ Prompt Final
+      ▼
+ LLM
+```
+
+---
+
+# Principais conceitos
+
+## Macro
+
+Uma Macro representa a menor unidade executável da linguagem.
+
+Ela armazena exatamente uma instrução contextual.
+
+```ocai
+$lighting = "Neutral studio lighting."
+```
+
+ou
+
+```ocai
+$lighting = {
+    Use neutral studio lighting.
+}
+```
+
+Strings atribuídas a uma Macro são automaticamente convertidas pelo Runtime para uma Macro temporária.
+
+---
+
+## Pipeline
+
+Um Pipeline é uma sequência ordenada de Macros.
+
+```ocai
+$scene_pipe[].ADD(
+    Match ambient lighting.
+)
+
+$scene_pipe[].ADD(
+    Preserve perspective.
+)
+```
+
+Ao executar o Pipeline:
+
+```ocai
+$scene_pipe[].EXECUTE()
+```
+
+cada Macro é executada na ordem em que foi adicionada.
+
+---
+
+## Workflow
+
+O Workflow representa a composição dos diversos Pipelines necessários para executar uma tarefa.
+
+```ocai
+$workflow().ADD({
+    $wearing_pipe[]
+    $scene_pipe[]
+    $quality_pipe[]
+})
+
+$workflow().EXECUTE()
+```
+
+---
+
+# Runtime
+
+O Runtime é responsável por:
+
+- validar regras
+- validar Assets
+- resolver dependências
+- converter Strings em Macros
+- executar Pipelines
+- montar o Prompt Final
+
+---
+
+# Assets
+
+OCAI foi desenvolvido pensando em fluxos profissionais de IA.
+
+Exemplo:
+
+```
+BODY
+FACE
+POSE
+CLOTHING
+SCENE
+SCENE ELEMENTS
+```
+
+Cada Asset possui uma responsabilidade específica.
+
+Exemplo:
+
+BODY
+
+- identidade corporal
+- proporções
+- anatomia
+
+FACE
+
+- identidade facial
+- pele
+- olhos
+- cabelo
+
+CLOTHING
+
+- roupas
+- tecidos
+- construção
+- materiais
+
+SCENE
+
+- ambiente
+
+SCENE ELEMENTS
+
+- localização espacial
+- máscaras
+- posicionamento
+
+---
+
+# Exemplo de execução
+
+```
+BODY
+      ↓
+FACE
+      ↓
+WEARING
+      ↓
+POSE
+      ↓
+SCENE
+      ↓
+SCENE ELEMENTS
+      ↓
+Prompt Final
+```
+
+Cada etapa adiciona contexto sem substituir a anterior.
+
+---
+
+# Comparação
+
+## Prompt tradicional
+
+```
+Crie uma fotografia profissional usando essa personagem.
+Preserve sua identidade.
+Vista as roupas anexadas.
+Aplique essa pose.
+Coloque-a na sala.
+Preserve iluminação.
+Preserve tecidos.
+...
+```
+
+Tudo está misturado.
+
+---
+
+## Com OCAI
+
+```ocai
+$workflow().ADD({
+    $wearing_pipe[]
+    $scene_pipe[]
+    $quality_pipe[]
+})
+
+@FRONTEND.PRINT(
+    $workflow().EXECUTE()
+)
+```
+
+O Runtime organiza automaticamente o contexto.
+
+---
+
+# Vantagens
+
+✅ Organização
+
+Separação entre contexto e lógica de execução.
+
+---
+
+✅ Reutilização
+
+Pipelines podem ser reutilizados em vários projetos.
+
+---
+
+✅ Modularidade
+
+Cada módulo possui apenas uma responsabilidade.
+
+---
+
+✅ Manutenção
+
+Alterações ficam localizadas.
+
+---
+
+✅ Escalabilidade
+
+Projetos podem crescer sem transformar prompts em blocos gigantes.
+
+---
+
+✅ Determinismo
+
+A ordem de execução passa a ser explícita.
+
+---
+
+✅ Testabilidade
+
+Cada Pipeline pode ser testado isoladamente.
+
+---
+
+# Casos de uso
+
+O OCAI pode ser utilizado em projetos envolvendo:
+
+- geração de imagens
+- geração de vídeos
+- moda
+- fotografia
+- publicidade
+- digital twins
+- CAD
+- arquitetura
+- engenharia
+- agentes especializados
+- automação de prompts
+
+---
+
+# OCAI não substitui Prompt Engineering
+
+O Prompt continua sendo o produto final entregue ao modelo.
+
+O OCAI apenas fornece uma camada de organização, validação e execução capaz de preparar esse Prompt de maneira muito mais estruturada.
+
+---
+
+# Status do projeto
+
+🚧 Em desenvolvimento.
+
+O OCAI está sendo utilizado como base para diversos projetos especializados de IA, incluindo o **Fashion Builder**, voltado para produção profissional de imagens de moda utilizando modelos como GPT Image e Nano Banana.
+
+---
+
+# Licença
+
+Este projeto é disponibilizado como uma especificação aberta para construção de fluxos estruturados de contexto para Large Language Models.
+
+Contribuições são bem-vindas.
+
+
+---
+
+# In English
+
+
 > **OCAI (Orchestrated Context Artificial Intelligence)** is a
 > lightweight Domain Specific Language (DSL) for organizing, validating,
 > and executing complex prompt-engineering workflows for Large Language
