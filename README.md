@@ -6,6 +6,14 @@ English version after portuguese ↓
 
 O objetivo do OCAI não é substituir Prompt Engineering, mas fornecer uma camada de execução estruturada capaz de tornar projetos complexos mais organizados, reutilizáveis e previsíveis.
 
+🟧 DSL
+🤖 LLM Native
+🧠 Context Orchestration
+⚙️ Runtime
+📦 Pipeline Based
+🔓 Open Specification
+📄 MIT License
+
 ---
 
 # Por que o OCAI?
