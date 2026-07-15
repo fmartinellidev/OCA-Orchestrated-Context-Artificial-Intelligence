@@ -1,4 +1,4 @@
-# OCAI DSL
+# OCAI DSL ![Diagrama](docs/images/ocai_dsl_icon.png)
 
 > **OCAI (Orchestrated Context Artificial Intelligence)** is a
 > lightweight Domain Specific Language (DSL) for organizing, validating,
